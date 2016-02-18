@@ -263,6 +263,31 @@
 
 
           /**
+           ====================== EchoNest =====================
+           */
+          getAudioFeatures: function (type, options) {
+            options = options || {};
+            options.type = type;
+            return this.api('/audio-features', 'GET', options, null, this._auth());
+          },
+          getTopListsArtists: function (type, options) {
+            options = options || {};
+            options.type = type;
+            return this.api('/me/toplists/artist', 'GET', options, null, this._auth());
+          },
+          getTopListsTracks: function (type, options) {
+            options = options || {};
+            options.type = type;
+            return this.api('/me/toplists/track', 'GET', options, null, this._auth());
+          },
+          getRecommendations: function (type, options) {
+            options = options || {};
+            options.type = type;
+            return this.api('/recommendations', 'GET', options, null, this._auth());
+          },
+
+
+          /**
             ====================== Library =====================
            */
           getSavedUserTracks: function (options) {
