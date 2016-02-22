@@ -265,9 +265,7 @@
           /**
            ====================== EchoNest =====================
            */
-          getAudioFeatures: function (type, options) {
-            options = options || {};
-            options.type = type;
+          getAudioFeatures: function (options) {
             return this.api('/audio-features', 'GET', options, null, this._auth());
           },
           getTopListsArtists: function (type, options) {
