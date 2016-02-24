@@ -279,9 +279,10 @@
             return this.api('/me/toplists/track', 'GET', options, null, this._auth());
           },
           getRecommendations: function (type, options) {
-            options = options || {};
-            options.type = type;
             return this.api('/recommendations', 'GET', options, null, this._auth());
+          },
+          getGenreSeeds: function (options) {
+            return this.api('/recommendations/available-genre-seeds', 'GET', options, null, this._auth());
           },
 
 
