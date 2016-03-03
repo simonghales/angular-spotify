@@ -278,7 +278,7 @@
             options.type = type;
             return this.api('/me/toplists/track', 'GET', options, null, this._auth());
           },
-          getRecommendations: function (type, options) {
+          getRecommendations: function (options) {
             return this.api('/recommendations', 'GET', options, null, this._auth());
           },
           getGenreSeeds: function (options) {
@@ -513,7 +513,7 @@
                 if (authWindow) { authWindow.close(); }
                 authCompleted = true;
 
-                that.setAuthToken(e.newValue);
+                that.setAuthToken(e.newValue.token);
                 $window.removeEventListener('storage', storageChanged, false);
 
                 deferred.resolve(e.newValue);
@@ -523,6 +523,10 @@
             $window.addEventListener('storage', storageChanged, false);
 
             return deferred.promise;
+          },
+
+          refreshToken: function() {
+            return this.api('/recommendations', 'GET', options, null, this._auth());
           }
         };
 
