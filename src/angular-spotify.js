@@ -271,12 +271,12 @@
           getTopListsArtists: function (type, options) {
             options = options || {};
             options.type = type;
-            return this.api('/me/toplists/artist', 'GET', options, null, this._auth());
+            return this.api('/me/top/artists', 'GET', options, null, this._auth());
           },
           getTopListsTracks: function (type, options) {
             options = options || {};
             options.type = type;
-            return this.api('/me/toplists/track', 'GET', options, null, this._auth());
+            return this.api('/me/top/tracks', 'GET', options, null, this._auth());
           },
           getRecommendations: function (options) {
             return this.api('/recommendations', 'GET', options, null, this._auth());
@@ -513,7 +513,7 @@
                 if (authWindow) { authWindow.close(); }
                 authCompleted = true;
 
-                that.setAuthToken(e.newValue.token);
+                that.setAuthToken(e.newValue);
                 $window.removeEventListener('storage', storageChanged, false);
 
                 deferred.resolve(e.newValue);
