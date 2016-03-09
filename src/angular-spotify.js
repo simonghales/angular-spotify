@@ -525,7 +525,7 @@
             return deferred.promise;
           },
 
-          refreshToken: function() {
+          refreshToken: function(options) {
             return this.api('/recommendations', 'GET', options, null, this._auth());
           }
         };
