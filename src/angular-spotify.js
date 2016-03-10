@@ -268,14 +268,10 @@
           getAudioFeatures: function (options) {
             return this.api('/audio-features', 'GET', options, null, this._auth());
           },
-          getTopListsArtists: function (type, options) {
-            options = options || {};
-            options.type = type;
+          getTopListsArtists: function (options) {
             return this.api('/me/top/artists', 'GET', options, null, this._auth());
           },
-          getTopListsTracks: function (type, options) {
-            options = options || {};
-            options.type = type;
+          getTopListsTracks: function (options) {
             return this.api('/me/top/tracks', 'GET', options, null, this._auth());
           },
           getRecommendations: function (options) {
