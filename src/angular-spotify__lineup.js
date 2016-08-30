@@ -11,7 +11,6 @@
       settings.redirectUri = null;
       settings.scope = null;
       settings.authToken = null;
-      settings.showDialog = false;
 
       this.setClientId = function (clientId) {
         settings.clientId = clientId;
@@ -25,11 +24,6 @@
       this.setAuthToken = function (authToken) {
         settings.authToken = authToken;
         return settings.authToken;
-      };
-
-      this.setShowDialog = function (showDialog) {
-        settings.showDialog = showDialog;
-        return settings.showDialog;
       };
 
       this.setRedirectUri = function (redirectUri) {
@@ -67,7 +61,6 @@
           this.redirectUri = settings.redirectUri;
           this.apiBase = settings.apiBase;
           this.scope = settings.scope;
-          this.showDialog = settings.showDialog;
           this.authToken = settings.authToken;
           this.toQueryString = utils.toQueryString;
         }
@@ -103,12 +96,12 @@
               headers: headers,
               withCredentials: false
             })
-            .success(function (data) {
-              deferred.resolve(data);
-            })
-            .error(function (data) {
-              deferred.reject(data);
-            });
+              .success(function (data) {
+                deferred.resolve(data);
+              })
+              .error(function (data) {
+                deferred.reject(data);
+              });
             return deferred.promise;
           },
 
@@ -122,16 +115,8 @@
             return auth;
           },
 
-          _authImage: function () {
-            var auth = {
-              'Authorization': 'Bearer ' + this.authToken
-            };
-            auth['Content-Type'] = 'image/jpeg';
-            return auth;
-          },
-
           /**
-            ====================== Albums =====================
+           ====================== Albums =====================
            */
 
           /**
@@ -170,7 +155,7 @@
 
 
           /**
-            ====================== Artists =====================
+           ====================== Artists =====================
            */
 
           /**
@@ -222,7 +207,7 @@
 
 
           /**
-            ====================== Browse =====================
+           ====================== Browse =====================
            */
           getFeaturedPlaylists: function (options) {
             return this.api('/browse/featured-playlists', 'GET', options, null, this._auth());
@@ -254,7 +239,7 @@
 
 
           /**
-            ====================== Following =====================
+           ====================== Following =====================
            */
           following: function (type, options) {
             options = options || {};
@@ -309,7 +294,7 @@
 
 
           /**
-            ====================== Library =====================
+           ====================== Library =====================
            */
           getSavedUserTracks: function (options) {
             return this.api('/me/tracks', 'GET', options, null, this._auth());
@@ -381,21 +366,21 @@
 
 
           /**
-            ====================== Personalization =====================
+           ====================== Personalization =====================
            */
-           getUserTopArtists: function (options) {
-             options = options || {};
-             return this.api('/me/top/artists', 'GET', options, null, this._auth());
-           },
+          getUserTopArtists: function (options) {
+            options = options || {};
+            return this.api('/me/top/artists', 'GET', options, null, this._auth());
+          },
 
-           getUserTopTracks: function (options) {
-             options = options || {};
-             return this.api('/me/top/tracks', 'GET', options, null, this._auth());
-           },
+          getUserTopTracks: function (options) {
+            options = options || {};
+            return this.api('/me/top/tracks', 'GET', options, null, this._auth());
+          },
 
 
           /**
-            ====================== Playlists =====================
+           ====================== Playlists =====================
            */
           getUserPlaylists: function (userId, options) {
             return this.api('/users/' + userId + '/playlists', 'GET', options, null, {
@@ -471,12 +456,8 @@
             return this.api('/users/' + userId + '/playlists/' + playlistId, 'PUT', null, options, this._auth(true));
           },
 
-          uploadCustomPlaylistCoverImage: function (userId, playlistId, image) {
-            return this.api('/users/' + userId + '/playlists/' + playlistId + '/images', 'PUT', null, image, this._authImage());
-          },
-
           /**
-            ====================== Profiles =====================
+           ====================== Profiles =====================
            */
 
           getUser: function (userId) {
@@ -504,7 +485,7 @@
 
 
           /**
-            ====================== Tracks =====================
+           ====================== Tracks =====================
            */
           getTrack: function (track) {
             track = track.indexOf('spotify:') === -1 ? track : track.split(':')[2];
@@ -539,16 +520,11 @@
 
 
           /**
-            ====================== Login =====================
+           ====================== Login =====================
            */
           setAuthToken: function (authToken) {
             this.authToken = authToken;
             return this.authToken;
-          },
-
-          setShowDialog: function (showDialog) {
-            this.showDialog = showDialog;
-            return this.showDialog;
           },
 
           getRedirectUri: function () {
@@ -560,16 +536,16 @@
             var that = this;
 
             var w = 400,
-                h = 500,
-                left = (screen.width / 2) - (w / 2),
-                top = (screen.height / 2) - (h / 2);
+              h = 500,
+              left = (screen.width / 2) - (w / 2),
+              top = (screen.height / 2) - (h / 2);
 
             var params = {
               client_id: this.clientId,
               redirect_uri: this.redirectUri,
               scope: this.scope || '',
-              response_type: 'token',
-              show_dialog: this.showDialog
+              response_type: 'code',
+              state: '34fFs29kd09' // todo remove
             };
 
             var authCompleted = false;

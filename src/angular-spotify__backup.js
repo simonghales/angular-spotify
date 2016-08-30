@@ -122,14 +122,6 @@
             return auth;
           },
 
-          _authImage: function () {
-            var auth = {
-              'Authorization': 'Bearer ' + this.authToken
-            };
-            auth['Content-Type'] = 'image/jpeg';
-            return auth;
-          },
-
           /**
             ====================== Albums =====================
            */
@@ -469,10 +461,6 @@
 
           updatePlaylistDetails: function (userId, playlistId, options) {
             return this.api('/users/' + userId + '/playlists/' + playlistId, 'PUT', null, options, this._auth(true));
-          },
-
-          uploadCustomPlaylistCoverImage: function (userId, playlistId, image) {
-            return this.api('/users/' + userId + '/playlists/' + playlistId + '/images', 'PUT', null, image, this._authImage());
           },
 
           /**
